@@ -55,36 +55,35 @@ const projectsData = [
     },
     {
         category: "uiux", img: "Nike.png",
-        title: "Nike Air Max 90 Landing Page Design", 
-        short: "Sleek dark UI for Nike icon.", 
-        desc: "Modern landing page concept inspired by Nike Air Max 90. Visually engaging and conversion-focused using premium dark UI.", 
-        tech: "Figma, UI Design, Prototyping", 
-        catName: "UI/UX Design", 
-        style: "Dark UI, Minimal & Clean", 
-        live: "https://www.figma.com/design/BNff0XOQ8flVB4ElE1Cxpx/NIKE?node-id=0-1&p=f&t=y5oWd7CFqpGRDZbW-0", 
-        behance: "https://www.behance.net/gallery/246585661/Nike-Air-Max-90-Landing-Page-Design-Modern-Dark-UI", 
+        title: "Nike Air Max 90 Landing Page Design",
+        short: "Sleek dark UI for Nike icon.",
+        desc: "Modern landing page concept inspired by Nike Air Max 90. Visually engaging and conversion-focused using premium dark UI.",
+        tech: "Figma, UI Design, Prototyping",
+        catName: "UI/UX Design",
+        style: "Dark UI, Minimal & Clean",
+        live: "https://www.figma.com/design/YizFQFaYNWvSZKaTZiP2Wt/Mouse-Web-Page",
+        behance: "https://www.behance.net/gallery/246524677/Logitech-MX-Master-3S-Landing-Page-Design",
         tags: ["Figma", "Photoshop"]
     },
     {
         category: "web", img: "Doctor Web UI.png",
         title: "Medical Landing Page UI Design",
         short: "A clean and modern healthcare landing page focused on clarity and user-friendly design.",
-        desc: "A modern healthcare landing page designed with a clean layout, soft visuals, and a strong focus on user experience and readability.", 
-        tech: "Figma (UI/UX Design), Google Fonts", 
-        catName: "Web Design", 
-        style: "Minimal, Medical / Healthcare UI, Soft Color Palette, Professional & Modern", 
-        live: "https://www.figma.com/design/CGO0wT6xX05WLtdoH96XxA/WEB-Page-UX?node-id=0-1&p=f&t=gqCZ8Z5y5EIpjMLq-0", 
-        behance: "https://www.behance.net/gallery/246587503/Medical-Healthcare-Landing-Page-Design", tags: ["Figma", "Photoshop", "HTML/CSS"]
+        desc: "A modern healthcare landing page designed with a clean layout, soft visuals, and a strong focus on user experience and readability.",
+        tech: "Figma (UI/UX Design), Google Fonts",
+        catName: "Web Design",
+        style: "Minimal, Medical / Healthcare UI, Soft Color Palette, Professional & Modern",
+        live: "#", behance: "#", tags: ["Figma", "Photoshop", "HTML/CSS"]
     },
     {
         category: "dev",
         img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-        title: "React Dashboard", 
-        short: "Scalable admin panel.", 
-        desc: "Building performant, scalable web applications with clean, maintainable code.", 
-        tech: "React, Node.js, TypeScript", 
-        catName: "Development", 
-        style: "Modern, Interactive", 
+        title: "React Dashboard",
+        short: "Scalable admin panel.",
+        desc: "Building performant, scalable web applications with clean, maintainable code.",
+        tech: "React, Node.js, TypeScript",
+        catName: "Development",
+        style: "Modern, Interactive",
         live: "#", behance: "#", tags: ["React", "Node.js"]
     }
 ];
@@ -137,8 +136,118 @@ document.getElementById("locationBox")?.addEventListener("click", () => { window
 document.getElementById("instagramBox")?.addEventListener("click", () => { window.open("https://instagram.com/uxbyawais", "_blank"); });
 document.getElementById("linkedinIcon")?.addEventListener("click", () => { window.open("https://www.linkedin.com/in/awais-mitho-khokhar-042938313/", "_blank"); });
 document.getElementById("behanceIcon")?.addEventListener("click", () => { window.open("https://www.behance.net/awaisrathore", "_blank"); });
-document.getElementById("sendBtn")?.addEventListener("click", () => { alert("✅ Your message has been sent successfully!"); document.getElementById("formName").value = ""; document.getElementById("formEmail").value = ""; document.getElementById("formSubject").value = ""; document.getElementById("formMsg").value = ""; });
+// Initialize EmailJS with your Public Key
+(function() {
+    emailjs.init("2vRiXcUPMouelk2Jr"); // Replace with your actual Public Key
+})();
+
+// Handle contact form submission
+document.getElementById("sendBtn")?.addEventListener("click", async () => {
+    // Get form values
+    const name = document.getElementById("formName").value;
+    const email = document.getElementById("formEmail").value;
+    const subject = document.getElementById("formSubject").value;
+    const message = document.getElementById("formMsg").value;
+    
+    // Validate form fields
+    if (!name || !email || !subject || !message) {
+        alert("❌ Please fill in all fields before sending.");
+        return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("❌ Please enter a valid email address.");
+        return;
+    }
+    
+    // Show sending status
+    const sendBtn = document.getElementById("sendBtn");
+    const originalText = sendBtn.textContent;
+    sendBtn.textContent = "Sending...";
+    sendBtn.disabled = true;
+    
+    // Prepare template parameters
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+        to_email: "awaismitho7@gmail.com" // Your email
+    };
+    
+    try {
+        // Send email using EmailJS
+        const response = await emailjs.send(
+            "service_p2tnmgm",      // Replace with your Service ID
+            "template_kubf3rv",     // Replace with your Template ID
+            templateParams
+        );
+        
+        if (response.status === 200) {
+            // Success message
+            alert(`✅ Thank you ${name}! Your message has been sent successfully. I'll get back to you soon!`);
+            
+            // Clear form
+            document.getElementById("formName").value = "";
+            document.getElementById("formEmail").value = "";
+            document.getElementById("formSubject").value = "";
+            document.getElementById("formMsg").value = "";
+        } else {
+            alert("❌ Something went wrong. Please try again.");
+        }
+    } catch (error) {
+        console.error("EmailJS Error:", error);
+        alert("❌ Failed to send message. Please try again later.");
+    } finally {
+        // Reset button state
+        sendBtn.textContent = originalText;
+        sendBtn.disabled = false;
+    }
+});
 document.getElementById("footerLinkedIn")?.addEventListener("click", () => { window.open("https://www.linkedin.com/in/awais-mitho-khokhar-042938313/", "_blank"); });
 document.getElementById("footerBehance")?.addEventListener("click", () => { window.open("https://www.behance.net/awaisrathore", "_blank"); });
 document.getElementById("footerInstagram")?.addEventListener("click", () => { window.open("https://instagram.com/uxbyawais", "_blank"); });
 document.getElementById("subBtn")?.addEventListener("click", () => { let email = document.getElementById("newsEmail").value; if (email) alert(`Thanks for subscribing ${email}!`); else alert("Please enter email."); });
+
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const navbarNav = document.querySelector('nav');
+
+if (menuToggle && navbarNav) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navbarNav.classList.toggle('show');
+        const icon = menuToggle.querySelector('i');
+        if (navbarNav.classList.contains('show')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+    
+    document.addEventListener('click', (event) => {
+        if (navbarNav.classList.contains('show') && 
+            !navbarNav.contains(event.target) && 
+            !menuToggle.contains(event.target)) {
+            navbarNav.classList.remove('show');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarNav.classList.contains('show')) {
+                navbarNav.classList.remove('show');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+}
