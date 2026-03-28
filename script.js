@@ -251,3 +251,232 @@ if (menuToggle && navbarNav) {
         });
     });
 }
+
+
+// ========== SCROLL REVEAL ANIMATIONS ==========
+
+// Function to check if element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    
+    return (
+        rect.top <= windowHeight - 100 &&
+        rect.bottom >= 100 &&
+        rect.left <= windowWidth &&
+        rect.right >= 0
+    );
+}
+
+// Add reveal classes to elements
+function addRevealClasses() {
+    // Hero elements (already animated with CSS, just add reveal class for consistency)
+    document.querySelectorAll('.hero .left, .hero .right').forEach(el => {
+        el.classList.add('reveal');
+    });
+    
+    // About section
+    const aboutImg = document.querySelector('.about-img');
+    const aboutRight = document.querySelector('.about-right');
+    if (aboutImg) aboutImg.classList.add('reveal-scale');
+    if (aboutRight) aboutRight.classList.add('reveal-right');
+    
+    // Section headers
+    document.querySelectorAll('.skills-header, .services-header, .contact-header, .about-header').forEach(el => {
+        el.classList.add('reveal');
+    });
+    
+    // Stats
+    const stats = document.querySelector('.stats');
+    if (stats) stats.classList.add('reveal');
+    
+    // Skill cards
+    document.querySelectorAll('.skill-card').forEach(el => {
+        el.classList.add('reveal');
+    });
+    
+    // Project cards
+    document.querySelectorAll('.service-card').forEach(el => {
+        el.classList.add('reveal');
+    });
+    
+    // Contact sections
+    const contactLeft = document.querySelector('.contact-left');
+    const contactRight = document.querySelector('.contact-right');
+    if (contactLeft) contactLeft.classList.add('reveal-left');
+    if (contactRight) contactRight.classList.add('reveal-right');
+    
+    // Footer columns
+    document.querySelectorAll('.footer-col').forEach(el => {
+        el.classList.add('reveal');
+    });
+    
+    // Project categories
+    const categories = document.querySelector('.project-categories');
+    if (categories) categories.classList.add('reveal');
+}
+
+// Function to reveal elements on scroll
+function revealOnScroll() {
+    // Reveal section headers
+    document.querySelectorAll('.skills-header, .services-header, .contact-header, .about-header, .project-categories, .stats').forEach(el => {
+        if (isInViewport(el) && !el.classList.contains('active')) {
+            el.classList.add('active');
+        }
+    });
+    
+    // Reveal about images
+    document.querySelectorAll('.about-img, .about-right').forEach(el => {
+        if (isInViewport(el) && !el.classList.contains('active')) {
+            el.classList.add('active');
+        }
+    });
+    
+    // Reveal skill cards with stagger effect
+    const skillCards = document.querySelectorAll('.skill-card');
+    skillCards.forEach((card, index) => {
+        if (isInViewport(card) && !card.classList.contains('revealed')) {
+            setTimeout(() => {
+                card.classList.add('revealed');
+            }, index * 100);
+        }
+    });
+    
+    // Reveal project cards with stagger effect
+    const projectCards = document.querySelectorAll('.service-card');
+    projectCards.forEach((card, index) => {
+        if (isInViewport(card) && !card.classList.contains('revealed')) {
+            setTimeout(() => {
+                card.classList.add('revealed');
+            }, index * 100);
+        }
+    });
+    
+    // Reveal contact sections
+    const contactLeft = document.querySelector('.contact-left');
+    const contactRight = document.querySelector('.contact-right');
+    if (contactLeft && isInViewport(contactLeft) && !contactLeft.classList.contains('revealed')) {
+        contactLeft.classList.add('revealed');
+    }
+    if (contactRight && isInViewport(contactRight) && !contactRight.classList.contains('revealed')) {
+        contactRight.classList.add('revealed');
+    }
+    
+    // Reveal footer columns
+    const footerCols = document.querySelectorAll('.footer-col');
+    footerCols.forEach((col, index) => {
+        if (isInViewport(col) && !col.classList.contains('revealed')) {
+            setTimeout(() => {
+                col.classList.add('revealed');
+            }, index * 100);
+        }
+    });
+}
+
+// Initial setup
+document.addEventListener('DOMContentLoaded', () => {
+    addRevealClasses();
+    
+    // Small delay to ensure all elements are loaded
+    setTimeout(() => {
+        revealOnScroll();
+        
+        // Also trigger animation for elements already in viewport on load
+        const allRevealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        allRevealElements.forEach(el => {
+            if (isInViewport(el) && !el.classList.contains('active')) {
+                el.classList.add('active');
+            }
+        });
+        
+        // Force reveal skill cards in viewport
+        document.querySelectorAll('.skill-card').forEach(card => {
+            if (isInViewport(card) && !card.classList.contains('revealed')) {
+                card.classList.add('revealed');
+            }
+        });
+        
+        // Force reveal project cards in viewport
+        document.querySelectorAll('.service-card').forEach(card => {
+            if (isInViewport(card) && !card.classList.contains('revealed')) {
+                card.classList.add('revealed');
+            }
+        });
+    }, 100);
+});
+
+// Listen for scroll events with performance optimization
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+    }
+    scrollTimeout = requestAnimationFrame(() => {
+        revealOnScroll();
+    });
+});
+
+// Also reveal on resize
+window.addEventListener('resize', () => {
+    revealOnScroll();
+});
+
+// Parallax effect for hero section (optional)
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    const scrollPosition = window.pageYOffset;
+    if (hero && scrollPosition < 600) {
+        const left = document.querySelector('.hero .left');
+        const right = document.querySelector('.hero .right');
+        if (left) left.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+        if (right) right.style.transform = `translateY(${scrollPosition * 0.2}px)`;
+    }
+});
+
+// Add hover animation for skill cards
+document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px)';
+        card.style.transition = 'all 0.3s ease';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+    });
+});
+
+// Add smooth number counter for stats (optional)
+function animateNumbers() {
+    const stats = document.querySelectorAll('.stats h3');
+    const hasAnimated = false;
+    
+    stats.forEach(stat => {
+        const text = stat.innerText;
+        const number = parseInt(text);
+        if (!isNaN(number) && stat.getAttribute('data-animated') !== 'true') {
+            if (isInViewport(stat.parentElement)) {
+                let current = 0;
+                const increment = number / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= number) {
+                        stat.innerText = text;
+                        clearInterval(timer);
+                        stat.setAttribute('data-animated', 'true');
+                    } else {
+                        stat.innerText = Math.floor(current) + (text.includes('+') ? '+' : '') + (text.includes('%') ? '%' : '');
+                    }
+                }, 20);
+            }
+        }
+    });
+}
+
+// Add this to scroll reveal
+window.addEventListener('scroll', () => {
+    animateNumbers();
+});
+
+// Initial call for number animation
+setTimeout(animateNumbers, 500);
