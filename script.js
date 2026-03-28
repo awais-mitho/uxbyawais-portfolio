@@ -61,8 +61,8 @@ const projectsData = [
         tech: "Figma, UI Design, Prototyping", 
         catName: "UI/UX Design", 
         style: "Dark UI, Minimal & Clean", 
-        live: "https://www.figma.com/design/YizFQFaYNWvSZKaTZiP2Wt/Mouse-Web-Page", 
-        behance: "https://www.behance.net/gallery/246524677/Logitech-MX-Master-3S-Landing-Page-Design", 
+        live: "https://www.figma.com/design/BNff0XOQ8flVB4ElE1Cxpx/NIKE?node-id=0-1&p=f&t=y5oWd7CFqpGRDZbW-0", 
+        behance: "https://www.behance.net/gallery/246585661/Nike-Air-Max-90-Landing-Page-Design-Modern-Dark-UI", 
         tags: ["Figma", "Photoshop"]
     },
     {
@@ -73,7 +73,8 @@ const projectsData = [
         tech: "Figma (UI/UX Design), Google Fonts", 
         catName: "Web Design", 
         style: "Minimal, Medical / Healthcare UI, Soft Color Palette, Professional & Modern", 
-        live: "#", behance: "#", tags: ["Figma", "Photoshop", "HTML/CSS"]
+        live: "https://www.figma.com/design/CGO0wT6xX05WLtdoH96XxA/WEB-Page-UX?node-id=0-1&p=f&t=gqCZ8Z5y5EIpjMLq-0", 
+        behance: "https://www.behance.net/gallery/246587503/Medical-Healthcare-Landing-Page-Design", tags: ["Figma", "Photoshop", "HTML/CSS"]
     },
     {
         category: "dev",
