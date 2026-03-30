@@ -73,7 +73,19 @@ const projectsData = [
         tech: "Figma (UI/UX Design), Google Fonts",
         catName: "Web Design",
         style: "Minimal, Medical / Healthcare UI, Soft Color Palette, Professional & Modern",
-        live: "#", behance: "#", tags: ["Figma", "Photoshop", "HTML/CSS"]
+        live: "https://www.figma.com/design/CGO0wT6xX05WLtdoH96XxA/WEB-Page-UX?node-id=0-1&p=f&t=3L8Uv77JHDawQ0ev-0", 
+        behance: "https://www.behance.net/gallery/246587503/Medical-Healthcare-Landing-Page-Design", tags: ["Figma", "Photoshop", "HTML/CSS"]
+    },
+    {
+        category: "uiux", img: "Gaming.png",
+        title: "DualSense Gaming Controller UI Design",
+        short: "A modern gaming product UI focused on bold visuals, clean layout, and a high-conversion eCommerce experience.",
+        desc: "A modern healthcare landing page designed with a clean layout, soft visuals, and a strong focus on user experience and readability.",
+        tech: "Figma (UI/UX Design), Adobe Photoshop",
+        catName: "UI/UX Design",
+        style: "Dark UI (Gaming Aesthetic), Bold & Vibrant Color Scheme, Minimal & Clean Layout, High Contrast & Modern Typography",
+        live: "https://www.figma.com/design/ZrPm7usXLz48S5WDvuEEwc/Gaming?node-id=1-2&t=7s5LbbO6OQ7Hgufp-0", 
+        behance: "https://www.behance.net/gallery/246690381/DualSense-Gaming-Controller-UI-Design", tags: ["Figma", "Photoshop",]
     },
     {
         category: "dev",
