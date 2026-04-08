@@ -66,6 +66,18 @@ const projectsData = [
         tags: ["Figma", "Photoshop"]
     },
     {
+        category: "uiux", img: "Automind AI.jpg",
+        title: "Automind -- AI Productivity Website & Mobile App",
+        short: "A modern AI-powered chat platform designed with a seamless user experience across mobile, web, and dashboard interfaces.",
+        desc: "A cross-platform AI assistant designed to help users to automate tasks, generate content, and improve productivity through a clean, intuitive user exprience.",
+        tech: "Figma, UI Design, Prototyping & Wireframing, Design Systems",
+        catName: "UI/UX Design",
+        style: "AI-inspired Interface, Dark UI, User-Centered Design, Minimal & Clean, ",
+        live: "https://www.figma.com/design/y56Tww2B6t6WiT2Ol3ftV7/AI-Website?node-id=5-4&p=f&t=JfGrqjpOcgc6HWiv-0",
+        behance: "https://www.behance.net/gallery/239423229/Automind-AI-Web-App-UX-Design-Case-Study",
+        tags: ["Figma", "UI/UX Design", "AI Chat App", "Mobile App Design", "Web Design", "Dashboard Design", "SaaS Platform"]
+    },
+    {
         category: "web", img: "Doctor Web UI.png",
         title: "Medical Landing Page UI Design",
         short: "A clean and modern healthcare landing page focused on clarity and user-friendly design.",
