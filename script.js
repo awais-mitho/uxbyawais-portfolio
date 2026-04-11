@@ -30,7 +30,7 @@ window.addEventListener("scroll", () => {
 
 // Buttons
 document.getElementById("viewWorkBtn").addEventListener("click", () => { document.getElementById("projects").scrollIntoView({ behavior: "smooth" }); });
-document.getElementById("downloadCV").addEventListener("click", () => { window.open("Awais CV.pdf", "_blank"); });
+document.getElementById("downloadCV").addEventListener("click", () => { window.open("My CV.pdf", "_blank"); });
 document.getElementById("contactBtn").addEventListener("click", () => { const top = document.getElementById("contact").offsetTop - 90; window.scrollTo({ top, behavior: "smooth" }); });
 document.getElementById("aboutDownloadCV").addEventListener("click", () => { window.open("My CV.pdf", "_blank"); });
 
